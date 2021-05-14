@@ -2,6 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>e53646c3-152d-4d2c-ad18-5fbb3a46bbdb</UserSecretsId>
+    <OutputType>Exe</OutputType>
   </PropertyGroup>
 
 </Project>

@@ -1,132 +1,53 @@
-﻿<h3>Catalog</h3>
+﻿@{ ViewData["Title"] = "Carousel"; }
+
+@model List<Product>;
+
+<h3>Catalog</h3>
 
 <div id="my-carousel" class="carousel slide" data-ride="carousel">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_001.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">ASP.NET Core MVC</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_035.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">PostgreSQL</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_036.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">Business Intelligence</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_037.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">Seguran&#xE7;a</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Add</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
+        @{ 
+            const int PAGE_SIZE = 4;
+            int pageAmount = (int)Math.Ceiling((double)Model.Count / PAGE_SIZE);
+        }
 
-        </div>
-        <div class="item ">
-            <div class="row">
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_038.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">gest&#xE3;o de produtos</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_039.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">Algoritmos em Java</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_040.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">Xamarin Forms</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-3 col-lg-3">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <img class="img-product-carousel" src="/images/products/large_041.jpg" />
-                        </div>
-                        <div class="panel-footer produto-footer">
-                            <div class="product-name">Big Data</div>
-                            <div><h4><strong>R$ 69,90</strong></h4></div>
-                            <div class="text-center">
-                                <a href="/" class="btn btn-success">Adicionar</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        @for (int page = 0; page < pageAmount; page++)
+        {
 
+            <div class="item @(page == 0 ? "active" : "")">
+                <div class="row">
 
-        </div>
+                    @{ 
+                        var productsPage = Model.Skip(page * PAGE_SIZE).Take(PAGE_SIZE);
+                    }
+                        
+                    @foreach (var book in productsPage)
+                    {
+                        <div class="col-md-3 col-sm-3 col-lg-3">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <img class="img-product-carousel" src="/images/products/large_@(book.InternalId).jpg" />
+                                </div>
+                                <div class="panel-footer product-footer">
+                                    <div class="product-name">@book.Name</div>
+                                    <div><h4><strong>@book.Price</strong></h4></div>
+                                    <div class="text-center">
+                                        <a 
+                                           asp-action="shoppingcart" 
+                                           asp-route-internalid="@book.InternalId"
+                                           class="btn btn-success">Add</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>    
+
+        }
     </div>
 
     <!-- Controls -->

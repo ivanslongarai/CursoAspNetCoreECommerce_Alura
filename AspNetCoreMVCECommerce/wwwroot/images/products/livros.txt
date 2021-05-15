@@ -35,7 +35,7 @@ http://cdn.shopify.com/s/files/1/0155/7645/products/yPVDxju4tCeqY45tdQtvOZo6bdCz
 http://cdn.shopify.com/s/files/1/0155/7645/products/eFkRLwyjeOC9WaY2iNllrpf1zbpjYeA488RG0tjKfCA_large.jpg?v=1489173482|PostgreSQL
 http://cdn.shopify.com/s/files/1/0155/7645/products/vVWirlCq9G_fBkVCaXORAxIuYG_F0-gZ_M49f7b8vhA_large.jpg?v=1487964576|Business Intelligence
 http://cdn.shopify.com/s/files/1/0155/7645/products/zhQRY_vRi2-piaw5QkZpc552fcVQhN6fe4zLRb4fXV8_large.jpg?v=1486751361|Segurança
-http://cdn.shopify.com/s/files/1/0155/7645/products/vHczg36xNj-2MA4rleZpsAgmgq6lXJGUVEBKJgUJPqI_large.jpg?v=1485524045|gestão de produtos
+http://cdn.shopify.com/s/files/1/0155/7645/products/vHczg36xNj-2MA4rleZpsAgmgq6lXJGUVEBKJgUJPqI_large.jpg?v=1485524045|gestão de products
 http://cdn.shopify.com/s/files/1/0155/7645/products/eBook-Algoritmos_large.jpg?v=1484936519|Algoritmos em Java
 http://cdn.shopify.com/s/files/1/0155/7645/products/r6aF8viT0zglCz5-d5UQhZHSAhBVot7lXiqjgEpd8tg_large.jpg?v=1484342109|Xamarin Forms
 http://cdn.shopify.com/s/files/1/0155/7645/products/4MRnPs-gpoIYhwqavVoX2Mc64HktcIqFtQOyX8x0yDo_large.jpg?v=1480680976|Big Data
@@ -55,7 +55,7 @@ http://cdn.shopify.com/s/files/1/0155/7645/products/WWEj2kGc3k4Bve9orZZbOd15jjod
 http://cdn.shopify.com/s/files/1/0155/7645/products/QJqAPTPE3N1YMoK32lk4dVw2XtfE6jmYTk-u1SahDYE_large.jpg?v=1469129941|NoSQL
 http://cdn.shopify.com/s/files/1/0155/7645/products/wcDpyDSPxRrpeqG0itn55xvz_sD_BZ_LdhTtnEDtTlM_large.jpg?v=1519321935|GAE
 http://cdn.shopify.com/s/files/1/0155/7645/products/Amazon-Refatoracao-Ruby_large.jpg?v=1445627898|Refatoração com Ruby
-http://cdn.shopify.com/s/files/1/0155/7645/products/eBook-Gestao-Produtos_c1f1bc3e-bfe9-4895-b1cd-bcb953c46760_large.jpg?v=1502143769|Gestão de Produtos
+http://cdn.shopify.com/s/files/1/0155/7645/products/eBook-Gestao-products_c1f1bc3e-bfe9-4895-b1cd-bcb953c46760_large.jpg?v=1502143769|Gestão de products
 http://cdn.shopify.com/s/files/1/0155/7645/products/eBook-Direto-ao-Ponto_large.jpg?v=1464960251|Livro Direto ao Ponto
 http://cdn.shopify.com/s/files/1/0155/7645/products/Amazon-SQL-Oracle_large.jpg?v=1416425806|SQL e Oracle 
 http://cdn.shopify.com/s/files/1/0155/7645/products/cover_large.jpg?v=1477073475|PHP e MySQL

@@ -1,6 +1,6 @@
 ﻿@{ ViewData["Title"] = "Shopping Cart"; }
 
-@model  IList<OrderItem>;
+@model ShoppingCartViewModel;
 
 <h3>My Shopping Cart</h3>
 
@@ -25,9 +25,9 @@
         </div>
     </div>
     <div class="panel-body">
-        @foreach (var item in Model)
+        @foreach (var item in Model.Items)
         {
-            <div class="row row-center product-line">
+            <div class="row row-center product-line" item-id="@(item.Id)">
                 <div class="col-md-3">
                     <img class="img-product-cart" src="/images/products/large_@(item.Product.InternalId).jpg" />
                 </div>
@@ -36,14 +36,14 @@
                 <div class="col-md-2 text-center">
                     <div class="input-group">
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
+                            <button class="btn btn-default" onclick="shoppingCartJS.clickDecrement(this)">
                                 <span class="glyphicon-minus"></span>
                             </button>
                         </span>
                         <input type="text" value="@(item.Amount) "
-                               class="form-control text-center" />
+                               class="form-control text-center" onblur="shoppingCartJS.updateAmount(this)"/>
                         <span class="input-group-btn">
-                            <button class="btn btn-default">
+                            <button class="btn btn-default" onclick="shoppingCartJS.clickIncrement(this)">
                                 <span class="glyphicon-plus"></span>
                             </button>
                         </span>
@@ -51,7 +51,7 @@
                 </div>
                 <div class="col-md-2">
                     R$ <span class="pull-right" subtotal>
-                        @(item.Amount * item.UnitPrice)
+                        @(item.Subtotal)
                     </span>
                 </div>
             </div>
@@ -60,14 +60,14 @@
     <div class="panel-footer">
         <div class="row">
             <div class="col-md-10">
-                <span numero-items>
-                    Total: @(Model.Count)
+                <span number-items>
+                    Total: @(Model.Items.Count)
                     items
                 </span>
             </div>
             <div class="col-md-2">
                 Total: R$ <span class="pull-right" total>
-                    @(Model.Sum(i => i.Amount * i.UnitPrice))
+                    @(Model.Total)
                 </span>
             </div>
         </div>
@@ -78,7 +78,7 @@
     <div class="col-md-12">
         <div class="pull-right">
             <a class="btn btn-success" asp-action="carousel">
-                Add Product
+                Keep Shopping
             </a>
             <a class="btn btn-success" asp-action="resume">
                 Finish Order
@@ -86,3 +86,11 @@
         </div>
     </div>
 </div>
+
+@section Scripts
+{ 
+    <script src="~/js/shoppingCart.js">
+
+    </script>
+
+}

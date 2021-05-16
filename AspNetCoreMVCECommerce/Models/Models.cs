@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -60,16 +61,23 @@ namespace CodeHome.Models
         public string ZipCode { get; set; } = "";
     }
 
+    [DataContract]
     public class OrderItem : BaseModel
     {   
         [Required]
+        [DataMember]
         public Order Order { get; private set; }
         [Required]
+        [DataMember]
         public Product Product { get; private set; }
         [Required]
+        [DataMember]
         public int Amount { get; private set; }
         [Required]
+        [DataMember]
         public decimal UnitPrice { get; private set; }
+        [DataMember]
+        public decimal Subtotal => Amount * UnitPrice;
 
         public OrderItem()
         {
@@ -82,6 +90,11 @@ namespace CodeHome.Models
             Product = product;
             Amount = amount;
             UnitPrice = unitprice;
+        }
+
+        internal void SetAmount(int amount)
+        {
+            Amount = amount;
         }
     }
 

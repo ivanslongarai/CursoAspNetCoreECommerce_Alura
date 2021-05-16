@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CodeHome.Models;
+using CodeHome.Models.ViewModels;
 using CodeHome.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,11 +15,14 @@ namespace CodeHome.Controllers
 
         private readonly IProductRepository ProductRepository;
         private readonly IOrderRepository OrderRepository;
+        private readonly IOrderItemRepository OrderItemRepository;
 
-        public OrderController(IProductRepository productRepository, IOrderRepository orderRepository)
+        public OrderController(IProductRepository productRepository, IOrderRepository orderRepository,
+            IOrderItemRepository orderItemRepository)
         {
             this.ProductRepository = productRepository;
             this.OrderRepository = orderRepository;
+            this.OrderItemRepository = orderItemRepository;
         }
 
         public IActionResult Carousel()
@@ -43,12 +47,20 @@ namespace CodeHome.Controllers
                 OrderRepository.AddItem(internalId);
 
             Order order = OrderRepository.GetOrder();
-            return View(order.Items);
+            List<OrderItem> items = order.Items;
+            ShoppingCartViewModel shoppingCartViewModel = new ShoppingCartViewModel(items);
+            return base.View(shoppingCartViewModel);
         }
 
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        
+        [HttpPost]
+        public UpdateAmountResponse UpdateAmount([FromBody]OrderItem orderItem)
+        {
+            return OrderRepository.UpdateAmount(orderItem);
         }
 
     }

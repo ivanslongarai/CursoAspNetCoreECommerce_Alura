@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CodeHome.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using CodeHome.Models.ViewModels;
 
 namespace CodeHome.Repositories
 {
@@ -12,15 +13,20 @@ namespace CodeHome.Repositories
     {
         Order GetOrder();
         void AddItem(string internalId);
+        UpdateAmountResponse UpdateAmount(OrderItem orderItem);
+
     }
 
     public class OrderRepository : BaseRepository<Order>, IOrderRepository
     {
         private readonly IHttpContextAccessor ContextAccessor;
+        private readonly IOrderItemRepository OrderItemRepository;
 
-        public OrderRepository(ApplicationContext context, IHttpContextAccessor contextAccessor ) : base(context)
+        public OrderRepository(ApplicationContext context, IHttpContextAccessor contextAccessor,
+            IOrderItemRepository orderItemRepository) : base(context)
         {
             this.ContextAccessor = contextAccessor;
+            this.OrderItemRepository = orderItemRepository;
         }
 
         public void AddItem(string internalId)
@@ -69,5 +75,26 @@ namespace CodeHome.Repositories
         {
             ContextAccessor.HttpContext.Session.SetInt32("orderId", orderId);
         }
+
+        public UpdateAmountResponse UpdateAmount(OrderItem orderItem)
+        {
+            var orderItemBD = OrderItemRepository.GetOrderItem(orderItem.Id);
+            
+            if (orderItemBD != null)
+            {
+                if (orderItem.Amount <= 0)
+                    OrderItemRepository.RemoveOrdemItem(orderItem.Id);
+ 
+                orderItemBD.SetAmount(orderItem.Amount);
+                Context.SaveChanges();
+
+
+                var shoppingCartViewModel = new ShoppingCartViewModel(GetOrder().Items);
+                return new UpdateAmountResponse(orderItemBD, shoppingCartViewModel);
+            }
+
+            throw new ArgumentException("Item Order is missing...");
+        }
+
     }
 }

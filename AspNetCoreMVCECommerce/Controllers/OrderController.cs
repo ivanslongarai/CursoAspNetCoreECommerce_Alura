@@ -32,13 +32,25 @@ namespace CodeHome.Controllers
 
         public IActionResult Register()
         {
-            return View();
+            var orderRepository = OrderRepository.GetOrder();
+
+            if (orderRepository == null)
+                return RedirectToAction("Carousel");
+
+            return View(orderRepository.Register);
         }
 
-        public IActionResult Resume()
+        [HttpPost]
+        [ValidateAntiForgeryToken] // Avoiding CSRF (Croos-site request forgery) problem
+        public IActionResult Resume(Register register)
         {
-            Order order = OrderRepository.GetOrder();
-            return View(order);
+            if (ModelState.IsValid)
+            {
+                Order order = OrderRepository.UpdateRegister(register);
+                return View(order);
+            }
+
+            return RedirectToAction("Register");
         }
 
         public IActionResult ShoppingCart(string internalId)
@@ -58,6 +70,7 @@ namespace CodeHome.Controllers
         }
         
         [HttpPost]
+        [ValidateAntiForgeryToken] // Avoiding CSRF (Croos-site request forgery) problem
         public UpdateAmountResponse UpdateAmount([FromBody]OrderItem orderItem)
         {
             return OrderRepository.UpdateAmount(orderItem);

@@ -2,90 +2,106 @@
 
 <h3>Register</h3>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" for="nomeCliente">Customer Name</label>
-                <input type="text" class="form-control" id="nomeCliente" placeholder="Customer Name">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="email">Email</label>
-                <input type="email" class="form-control" id="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="telefone">Phone</label>
-                <input type="text" class="form-control" id="telefone" placeholder="Phone">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" for="adress">Adress</label>
-                <input type="text" class="form-control" id="adress" placeholder="Adress">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="Complement">Complement</label>
-                <input type="text" class="form-control" id="Complement" placeholder="Complement">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="bairro">District</label>
-                <input type="text" class="form-control" id="bairro" placeholder="District">
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-group">
-                <label class="control-label" for="City">City</label>
-                <input type="text" class="form-control" id="City" placeholder="City">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="State">State</label>
-                <select class="form-control single-select" name="State">
-                    <option selected value="">[Selecione o estado]</option>
-                    <option value="AC">Acre</option>
-                    <option value="AL">Alagoas</option>
-                    <option value="AP">Amapá</option>
-                    <option value="AM">Amazonas</option>
-                    <option value="BA">Bahia</option>
-                    <option value="CE">Ceará</option>
-                    <option value="DF">Distrito Federal</option>
-                    <option value="ES">Espírito Santo</option>
-                    <option value="GO">Goiás</option>
-                    <option value="MA">Maranhão</option>
-                    <option value="MT">Mato Grosso</option>
-                    <option value="MS">Mato Grosso do Sul</option>
-                    <option value="MG">Minas Gerais</option>
-                    <option value="PA">Pará</option>
-                    <option value="PB">Paraíba</option>
-                    <option value="PR">Paraná</option>
-                    <option value="PE">Pernambuco</option>
-                    <option value="PI">Piauí</option>
-                    <option value="RJ">Rio de Janeiro</option>
-                    <option value="RN">Rio Grande do Norte</option>
-                    <option value="RS">Rio Grande do Sul</option>
-                    <option value="RO">Rondônia</option>
-                    <option value="RR">Roraima</option>
-                    <option value="SC">Santa Catarina</option>
-                    <option value="SP">São Paulo</option>
-                    <option value="SE">Sergipe</option>
-                    <option value="TO">Tocantins</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="cep">ZipCode</label>
-                <input type="text" class="form-control" id="cep" placeholder="ZipCode">
-            </div>
+@model Register;
 
-            <div class="form-group">
-                <a class="btn btn-success" asp-action="carousel">
-                    Keep Buying
-                </a>
+<form asp-action="resume" method="POST">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="nomeCliente">Customer Name</label>
+                    <input type="text" class="form-control" id="nomeCliente" placeholder="Customer Name" asp-for="@Model.Name">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Email" asp-for="@Model.Email">
+                    <span asp-validation-for="@Model.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="telefone">Phone</label>
+                    <input type="text" class="form-control" id="telefone" placeholder="Phone" asp-for="@Model.Phone">
+                    <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <button type="submit"
-                        class="btn btn-success">
-                    Finish Order
-                </button>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="adress">Adress</label>
+                    <input type="text" class="form-control" id="adress" placeholder="Adress" asp-for="@Model.Adress">
+                    <span asp-validation-for="@Model.Adress" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="Complement">Complement</label>
+                    <input type="text" class="form-control" id="Complement" placeholder="Complement" asp-for="@Model.Complement">
+                    <span asp-validation-for="@Model.Complement" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="bairro">District</label>
+                    <input type="text" class="form-control" id="bairro" placeholder="District" asp-for="@Model.District">
+                    <span asp-validation-for="@Model.District" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label class="control-label" for="City">City</label>
+                    <input type="text" class="form-control" id="City" placeholder="City" asp-for="@Model.City">
+                    <span asp-validation-for="@Model.City" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="State">State</label>
+                    <select class="form-control single-select" name="State" asp-for="@Model.State">
+                        <option selected value="">[Select the State]</option>
+                        <option value="AC">Acre</option>
+                        <option value="AL">Alagoas</option>
+                        <option value="AP">Amapá</option>
+                        <option value="AM">Amazonas</option>
+                        <option value="BA">Bahia</option>
+                        <option value="CE">Ceará</option>
+                        <option value="DF">Distrito Federal</option>
+                        <option value="ES">Espírito Santo</option>
+                        <option value="GO">Goiás</option>
+                        <option value="MA">Maranhão</option>
+                        <option value="MT">Mato Grosso</option>
+                        <option value="MS">Mato Grosso do Sul</option>
+                        <option value="MG">Minas Gerais</option>
+                        <option value="PA">Pará</option>
+                        <option value="PB">Paraíba</option>
+                        <option value="PR">Paraná</option>
+                        <option value="PE">Pernambuco</option>
+                        <option value="PI">Piauí</option>
+                        <option value="RJ">Rio de Janeiro</option>
+                        <option value="RN">Rio Grande do Norte</option>
+                        <option value="RS">Rio Grande do Sul</option>
+                        <option value="RO">Rondônia</option>
+                        <option value="RR">Roraima</option>
+                        <option value="SC">Santa Catarina</option>
+                        <option value="SP">São Paulo</option>
+                        <option value="SE">Sergipe</option>
+                        <option value="TO">Tocantins</option>
+                    </select>
+                    <span asp-validation-for="@Model.State" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="cep">ZipCode</label>
+                    <input type="text" class="form-control" id="cep" placeholder="ZipCode" asp-for="@Model.ZipCode">
+                    <span asp-validation-for="@Model.ZipCode" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <a class="btn btn-success" asp-action="carousel">
+                        Keep Shooping
+                    </a>
+                </div>
+                <div class="form-group">
+                    <button type="submit"
+                            class="btn btn-success">
+                        Finish Order
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
+
+

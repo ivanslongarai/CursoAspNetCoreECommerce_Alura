@@ -14,6 +14,7 @@ namespace CodeHome.Repositories
         Order GetOrder();
         void AddItem(string internalId);
         UpdateAmountResponse UpdateAmount(OrderItem orderItem);
+        Order UpdateRegister(Register register);
 
     }
 
@@ -21,12 +22,14 @@ namespace CodeHome.Repositories
     {
         private readonly IHttpContextAccessor ContextAccessor;
         private readonly IOrderItemRepository OrderItemRepository;
+        private readonly IRegisterRepository RegisterRepository;
 
         public OrderRepository(ApplicationContext context, IHttpContextAccessor contextAccessor,
-            IOrderItemRepository orderItemRepository) : base(context)
+            IOrderItemRepository orderItemRepository, IRegisterRepository registerRepository) : base(context)
         {
             this.ContextAccessor = contextAccessor;
             this.OrderItemRepository = orderItemRepository;
+            this.RegisterRepository = registerRepository;
         }
 
         public void AddItem(string internalId)
@@ -51,8 +54,8 @@ namespace CodeHome.Repositories
         {
             var orderId = GetOrderId();
             var order = dbSet
-                .Include(p => p.Items)
-                .ThenInclude(i => i.Product)
+                .Include(p => p.Items).ThenInclude(i => i.Product)
+                .Include(p => p.Register)
                 .Where(p => p.Id == orderId).SingleOrDefault();
 
             if (order == null)
@@ -96,5 +99,11 @@ namespace CodeHome.Repositories
             throw new ArgumentException("Item Order is missing...");
         }
 
+        public Order UpdateRegister(Register register)
+        {
+            var order = GetOrder();
+            RegisterRepository.Update(order.Register.Id, register);
+            return order;
+        }
     }
 }

@@ -5,9 +5,15 @@ using System.Runtime.Serialization;
 
 namespace CodeHome.Models
 {
+
+    static class Constants
+    {
+        public const string MsgError = "This field value is needed.";
+    }
+
     [DataContract]
     public class BaseModel
-    {
+    {        
         [DataMember]
         public int Id { get; set; }
     }
@@ -41,24 +47,40 @@ namespace CodeHome.Models
         }
 
         public virtual Order Order { get; set; }
-        [Required]
+        
+        [MinLength(5, ErrorMessage ="This field requires a minimum of 5 caracteres")]
+        [MaxLength(50, ErrorMessage ="This field requires a maximum of 50 caracteres")]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string Name { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string Email { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string Phone { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string Adress { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string Complement { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string District { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string City { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string State { get; set; } = "";
-        [Required]
+        [Required(ErrorMessage = Constants.MsgError)]
         public string ZipCode { get; set; } = "";
+
+        internal void Update(Register newRegister)
+        {
+            this.Name = newRegister.Name;
+            this.Email = newRegister.Email;
+            this.Phone = newRegister.Phone;
+            this.Adress = newRegister.Adress;
+            this.Complement = newRegister.Complement;
+            this.District = newRegister.District;
+            this.City = newRegister.City;
+            this.State = newRegister.State;
+            this.ZipCode = newRegister.ZipCode;
+        }
     }
 
     [DataContract]

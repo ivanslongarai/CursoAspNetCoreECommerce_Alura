@@ -1,14 +1,14 @@
 ﻿
 class ShoppingCartJS {
 
-    clickIncrement(btn) {
-        let data = this.getData(btn);
+    clickIncrement(button) {
+        let data = this.getData(button);
         data.Amount++;
         this.postAmount(data);
     }
 
-    clickDecrement(btn) {
-        let data = this.getData(btn);
+    clickDecrement(button) {
+        let data = this.getData(button);
         data.Amount--;
         if (data.Amount < 0) data.Amount = 0;
         this.postAmount(data);
@@ -35,11 +35,17 @@ class ShoppingCartJS {
 
     postAmount(data) {
         /* Asynchronous JavaScript Xml (Nowadays we use another pattern that is Json)*/
+
+        let token = $("[name=__RequestVerificationToken]").val();
+        let headers = {};
+        headers["RequestVerificationToken"] = token;
+
         $.ajax({
             url: "/Order/UpdateAmount",
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
+            headers: headers
         }).done(function (response) {
             let orderItem = response.orderItem;
             let itemLine = $("[item-id=" + orderItem.id + "]");
